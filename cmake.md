@@ -2,10 +2,11 @@
 ## install
 ### GET_RUNTIME_DEPENDENCIES
 ```
+# cmake > 3.14 tgt根据实际修改
 if(MSVC)
     install(CODE "
         file(GET_RUNTIME_DEPENDENCIES
-        EXECUTABLES $<TARGET_FILE:SoyMap>
+        EXECUTABLES $<TARGET_FILE:tgt>
         RESOLVED_DEPENDENCIES_VAR resolved_deps
         UNRESOLVED_DEPENDENCIES_VAR unresolved_deps
         DIRECTORIES ${CMAKE_PREFIX_PATH}/bin
