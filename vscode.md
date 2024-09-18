@@ -1,4 +1,5 @@
 # setting.json
+在CMakeLists.txt中添加`set(CMAKE_EXPORT_COMPILE_COMMANDS ON)`,生成compile_commands.json文件
 ```
 {
     "cmake.configureOnOpen": true,
