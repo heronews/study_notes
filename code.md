@@ -85,3 +85,59 @@ void websocket_client::send_binary_message(const QByteArray &message)
     websocket->sendBinaryMessage(message);
 }
 ```
+ButtonMenu.qml
+```
+import QtQuick
+import QtQuick.Controls 2.15
+import QtQml 2.15
+
+Button {
+    property ObjectModel items
+    id: control
+    onClicked: menu.visible = !menu.visible
+    Instantiator {
+        model: items
+        onObjectAdded: (index, object) => menu.insertItem(index, object)
+        onObjectRemoved: (index, object) => menu.removeItem(object)
+    }
+    Menu {
+        id: menu
+        y: control.height
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+    }
+}
+```
+DoubleSpinBox.qml
+```
+import QtQuick
+import QtQuick.Controls 2.15
+
+SpinBox {
+    id: control
+    property int decimals: 2
+    readonly property int factor: Math.pow(10, decimals)
+    from: toInt(0.0)
+    to: toInt(99.0)
+    value: toInt(0.0)
+    stepSize: toInt(1.0)
+    function toInt(v) {
+        return v * factor
+    }
+    function toDouble(v) {
+        return v / factor
+    }
+    validator: DoubleValidator {
+        bottom: control.from
+        top: control.to
+        locale: control.locale.name
+        decimals: control.decimals
+    }
+    textFromValue: function (value, locale) {
+        return Number(control.value / control.factor).toLocaleString(
+                    locale, 'f', control.decimals)
+    }
+    valueFromText: function (text, locale) {
+        return Number.fromLocaleString(locale, text) * control.factor
+    }
+}
+```
