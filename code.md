@@ -88,8 +88,8 @@ void websocket_client::send_binary_message(const QByteArray &message)
 ButtonMenu.qml
 ```
 import QtQuick
-import QtQuick.Controls 2.15
-import QtQml 2.15
+import QtQuick.Controls
+import QtQml.Models
 
 Button {
     property ObjectModel items
@@ -110,7 +110,7 @@ Button {
 DoubleSpinBox.qml
 ```
 import QtQuick
-import QtQuick.Controls 2.15
+import QtQuick.Controls
 
 SpinBox {
     id: control
@@ -131,10 +131,11 @@ SpinBox {
         top: control.to
         locale: control.locale.name
         decimals: control.decimals
+        notation: DoubleValidator.StandardNotation
     }
     textFromValue: function (value, locale) {
-        return Number(control.value / control.factor).toLocaleString(
-                    locale, 'f', control.decimals)
+        return Number(value / control.factor).toLocaleString(locale, 'f',
+                                                             control.decimals)
     }
     valueFromText: function (text, locale) {
         return Number.fromLocaleString(locale, text) * control.factor
