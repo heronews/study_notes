@@ -2,10 +2,6 @@
 在CMakeLists.txt中添加`set(CMAKE_EXPORT_COMPILE_COMMANDS ON)`生成compile_commands.json文件
 ```
 {
-    "cmake.configureOnOpen": true,
-    // 开启粘贴保存自动格式化
-    "editor.formatOnPaste": false,
-    "editor.formatOnType": false,
     "clangd.path": "/usr/bin/clangd",
     // Clangd 运行参数(在终端/命令行输入 clangd --help-list-hidden 可查看更多)
     "clangd.arguments": [
@@ -20,8 +16,6 @@
         "--background-index",
         // 启用 Clang-Tidy 以提供「静态检查」
         "--clang-tidy",
-        // Clang-Tidy 静态检查的参数，指出按照哪些规则进行静态检查
-        "--clang-tidy-checks=clang-*",
         // 默认格式化风格
         "--fallback-style=GNU",
         // 同时开启的任务数量
