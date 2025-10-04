@@ -24,7 +24,7 @@ users.py
 ```
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
 
-KEY = "0f6600d243b9ae3d788727e74d81654ccdaca2042c1872c28323e017d6edba3d"
+KEY = ""
 
 async def get_current_user(session: sql_session_dep, token: str = Depends(oauth2_scheme)):
     try:
@@ -153,4 +153,14 @@ dependencies = []
 project_cli = "package.main:main"
 ```
 
-
+# numpy structured arrays
+```
+arr = numpy.frombuffer(
+    buffer,
+    [
+        ("x", "f4"),
+        ("y", "f4"),
+        ("z", "f4"),
+    ],
+)
+```

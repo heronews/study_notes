@@ -1,29 +1,4 @@
-# CMAKE INSTALL DEPENDENCIES
-cmake > 3.14 tgt根据实际修改
-```
-if(MSVC)
-    install(CODE "
-        file(GET_RUNTIME_DEPENDENCIES
-        EXECUTABLES $<TARGET_FILE:tgt>
-        RESOLVED_DEPENDENCIES_VAR resolved_deps
-        UNRESOLVED_DEPENDENCIES_VAR unresolved_deps
-        DIRECTORIES ${CMAKE_PREFIX_PATH}/bin
-        POST_EXCLUDE_REGEXES \"system32\")
-
-        message(STATUS \"resolved deps:\")
-        foreach(dep \${resolved_deps})
-            message(STATUS \" - \${dep}\")
-        endforeach()
-        file(INSTALL DESTINATION \"${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}\" TYPE SHARED_LIBRARY FILES \${resolved_deps})
-
-        message(STATUS \"unresolved deps:\")
-        foreach(dep \${unresolved_deps})
-            message(STATUS \" - \${dep}\")
-        endforeach()
-    ")
-endif()
-```
-write las file
+# write las file
 ```
 laszip_POINTER laszip_writer = nullptr;
 if (laszip_create (&laszip_writer))
@@ -40,7 +15,7 @@ header->point_data_format = 6;
 header->point_data_record_length = 30;
 if (laszip_open_writer (laszip_writer, file_name.c_str (), 0))
   {
-    return false;
+    return;
   }
 laszip_point *point;
 if (laszip_get_point_pointer (laszip_writer, &point))
