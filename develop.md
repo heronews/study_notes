@@ -17,3 +17,10 @@
     ]
 }
 ```
+# vcpkg 配置
+```
+Launch-VsDevShell.ps1 -Arch amd64
+$env:LOCALAPPDATA="D:\"
+vcpkg.exe new --application
+vcpkg.exe add port qt
+```
