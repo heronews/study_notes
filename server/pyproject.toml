@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.setuptools.package-data]
+"admin.static" = ["*.js", "*.css"]
+
+[project]
+name = "admin"
+version = "0.0.1"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "pydantic-settings",
+    "pyjwt",
+    "passlib[argon2]"
+]
+
+[project.scripts]
+project_cli = "admin.main:main"
